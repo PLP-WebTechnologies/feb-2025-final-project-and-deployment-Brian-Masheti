@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Theme toggle (dark/light mode)
+  // Initialize theme toggle
   const themeToggle = document.createElement("button");
   themeToggle.className = "theme-toggle";
   themeToggle.innerHTML = '<i class="bx bx-moon"></i>';
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("theme", isDark ? "dark" : "light");
   });
 
-  // Cart icon click
+  // Cart icon functionality
   const cartIcon = document.querySelector(".cart-icon");
   if (cartIcon) {
     cartIcon.addEventListener("click", () => {
@@ -28,17 +28,35 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Contact form handling
+  // Form submission handling
   const contactForm = document.querySelector("form");
   const submitButton = contactForm ? contactForm.querySelector('button[type="submit"]') : null;
 
+  // Create an on-screen message element
+  const messageDiv = document.createElement("div");
+  messageDiv.className = "form-message";
+  messageDiv.style.marginTop = "1rem";
+  messageDiv.style.padding = "0.5rem";
+  messageDiv.style.borderRadius = "5px";
+  messageDiv.style.display = "none";
+  if (contactForm) {
+    contactForm.appendChild(messageDiv);
+  }
+
   if (contactForm && submitButton) {
+    console.log("Contact form and submit button found.");
+
     contactForm.addEventListener("submit", async (e) => {
       e.preventDefault();
-      if (submitButton) submitButton.disabled = true;
-      if (submitButton) submitButton.textContent = "Sending...";
+      console.log("Form submission triggered.");
+
+      submitButton.disabled = true;
+      submitButton.textContent = "Sending...";
+      messageDiv.style.display = "none"; // Hide previous messages
 
       const formData = new FormData(contactForm);
+      console.log("Form data prepared:", Object.fromEntries(formData));
+
       try {
         const response = await fetch(contactForm.action, {
           method: "POST",
@@ -47,27 +65,41 @@ document.addEventListener("DOMContentLoaded", () => {
             Accept: "application/json",
           },
         });
+
         console.log("Formspree Response Status:", response.status);
-        console.log("Formspree Response:", await response.text());
+        const responseText = await response.text();
+        console.log("Formspree Response:", responseText);
+
         if (response.ok) {
-          alert("Thank you! Your message has been sent successfully.");
+          console.log("Form submission successful.");
+          messageDiv.textContent = "Message sent successfully!";
+          messageDiv.style.color = "#28a745"; // Green for success
+          messageDiv.style.backgroundColor = "#e6ffe6";
+          messageDiv.style.display = "block";
           contactForm.reset();
         } else {
-          alert("Oops! Something went wrong. Please try again. Status: " + response.status);
+          console.log("Form submission failed.");
+          messageDiv.textContent = `Oops! Something went wrong. Status: ${response.status} - ${responseText}`;
+          messageDiv.style.color = "#dc3545"; // Red for error
+          messageDiv.style.backgroundColor = "#ffe6e6";
+          messageDiv.style.display = "block";
         }
       } catch (error) {
         console.error("Network Error:", error);
-        alert("Network error. Please check your connection and try again.");
+        messageDiv.textContent = "Network error. Please check your connection and try again.";
+        messageDiv.style.color = "#dc3545";
+        messageDiv.style.backgroundColor = "#ffe6e6";
+        messageDiv.style.display = "block";
       } finally {
-        if (submitButton) {
-          submitButton.disabled = false;
-          submitButton.textContent = "Send Message";
-        }
+        submitButton.disabled = false;
+        submitButton.textContent = "Send Message";
       }
     });
+  } else {
+    console.error("Contact form or submit button not found.");
   }
 
-  // Responsive nav toggle
+  // Responsive navigation toggle
   const navToggle = document.querySelector(".nav-toggle");
   const navLinks = document.querySelector(".nav-links");
   if (navToggle && navLinks) {
@@ -76,27 +108,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // SPA-like navigation
+  // SPA-like navigation logic
   const sections = document.querySelectorAll(".section");
   const navLinksAll = document.querySelectorAll("[data-section]");
   const shoppingCharacter = document.querySelector(".shopping-character");
 
-  console.log("navLinksAll elements:", navLinksAll); // Debug: List all elements with data-section
-
   function showSection(sectionId) {
+    console.log(`Navigating to section: ${sectionId}`);
     sections.forEach((section) => {
-      if (section.getAttribute("data-section") === sectionId) {
-        section.classList.remove("hidden");
-        section.classList.add("visible");
-        if (section.getAttribute("data-section") === "hero" && shoppingCharacter) {
-          shoppingCharacter.classList.remove("paused");
-        }
-      } else {
-        section.classList.remove("visible");
-        section.classList.add("hidden");
-        if (section.getAttribute("data-section") === "hero" && shoppingCharacter) {
-          shoppingCharacter.classList.add("paused");
-        }
+      const isTargetSection = section.getAttribute("data-section") === sectionId;
+      section.classList.toggle("visible", isTargetSection);
+      section.classList.toggle("hidden", !isTargetSection);
+      if (section.getAttribute("data-section") === "hero" && shoppingCharacter) {
+        shoppingCharacter.classList.toggle("paused", !isTargetSection);
       }
     });
 
@@ -107,9 +131,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   navLinksAll.forEach((link) => {
     link.addEventListener("click", (e) => {
-      console.log("Clicked element:", link); // Debug: Log the clicked element
       e.preventDefault();
       const sectionId = link.getAttribute("data-section");
+      console.log(`Clicked link for section: ${sectionId}`);
       showSection(sectionId);
       if (navToggle && navToggle.checked) {
         navToggle.checked = false;
@@ -122,7 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const shopNowButton = document.querySelector('.hero .btn[data-section="shop"]');
   if (shopNowButton) {
     shopNowButton.addEventListener("click", (e) => {
-      console.log("Shop Now clicked");
+      console.log("Shop Now button clicked");
       e.preventDefault();
       showSection("shop");
     });
