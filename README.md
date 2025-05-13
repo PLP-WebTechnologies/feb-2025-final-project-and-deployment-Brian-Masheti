@@ -17,7 +17,7 @@
 2. Open the `index.html` file in your browser to view the project.
 
 ### Live Demo
-If deployed, include a link to the live demo here.
+[https://plp-webtechnologies.github.io/feb-2025-final-project-and-deployment-Brian-Masheti/]
 
 ## How It Works
 
