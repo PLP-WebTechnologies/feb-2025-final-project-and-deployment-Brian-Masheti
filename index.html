@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daclin Online Store</title>
+    <!-- Boxicon CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <!-- Favicon -->
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1170/1170678.png" type="image/png">
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="#home" data-section="hero">
+                <i class="bx bxs-store"></i>ShopEase
+            </a>
+        </div>
+        <div class="nav-container">
+            <input type="checkbox" id="nav-toggle" class="nav-toggle">
+            <label for="nav-toggle" class="nav-toggle-label">
+                <i class='bx bx-menu'></i>
+            </label>
+            <ul class="nav-links">
+                <li><a href="#home" data-section="hero" class="active">Home</a></li>
+                <li><a href="#shop" data-section="shop">Shop</a></li>
+                <li><a href="#about" data-section="about">About</a></li>
+                <li><a href="#contact" data-section="contact">Contact</a></li>
+            </ul>
+            <div class="cart-icon">
+                <i class="bx bx-cart"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <section class="hero section visible" data-section="hero">
+            <h1>Welcome to DaclinStore</h1>
+            <p>Your one-stop shop for all your needs and amazing deals.</p>
+            <div class="shopping-character"></div>
+            <a href="#shop" class="btn" data-section="shop">Shop Now</a>
+        </section>
+
+        <section id="shop" class="shop-section section hidden" data-section="shop">
+            <h2>Featured Products</h2>
+            <div class="products">
+                <div class="product-card">
+                    <img src="https://images.pexels.com/photos/13807630/pexels-photo-13807630.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&dpr=1" alt="Stylish Sneakers">
+                    <h3>Stylish Sneakers</h3>
+                    <p>$49.99</p>
+                    <button class="btn">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.pexels.com/photos/6650014/pexels-photo-6650014.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&dpr=1" alt="Leather Handbag">
+                    <h3>Leather Handbag</h3>
+                    <p>$89.99</p>
+                    <button class="btn">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.pexels.com/photos/8532616/pexels-photo-8532616.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&dpr=1" alt="Casual T-Shirt">
+                    <h3>Casual T-Shirt</h3>
+                    <p>$19.99</p>
+                    <button class="btn">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&dpr=1" alt="Classic Watch">
+                    <h3>Classic Watch</h3>
+                    <p>$99.99</p>
+                    <button class="btn">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.pexels.com/photos/30486981/pexels-photo-30486981/free-photo-of-high-quality-cordless-drills-in-woodworking-workshop.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&dpr=1" alt="Cordless Drill">
+                    <h3>Cordless Drill</h3>
+                    <p>$79.99</p>
+                    <button class="btn">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.pexels.com/photos/13084948/pexels-photo-13084948.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&dpr=1" alt="Blue Light Glasses">
+                    <h3>Blue Light Glasses</h3>
+                    <p>$29.99</p>
+                    <button class="btn">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.pexels.com/photos/6980714/pexels-photo-6980714.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&dpr=1" alt="Sofa Set">
+                    <h3>Sofa Set</h3>
+                    <p>$499.99</p>
+                    <button class="btn">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.pexels.com/photos/13004954/pexels-photo-13004954.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&dpr=1" alt="Dining Table">
+                    <h3>Dining Table</h3>
+                    <p>$299.99</p>
+                    <button class="btn">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.pexels.com/photos/8353767/pexels-photo-8353767.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&dpr=1" alt="Office Chair">
+                    <h3>Office Chair</h3>
+                    <p>$129.99</p>
+                    <button class="btn">Add to Cart</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about-section section hidden" data-section="about">
+            <h2>About Us</h2>
+            <p>At DaclinStore, we are committed to providing you with the best shopping experience. Our mission is to offer high-quality products at affordable prices.</p>
+            <p>We believe in customer satisfaction and strive to exceed your expectations with every purchase.</p>
+        </section>
+
+        <section id="contact" class="contact-section section hidden" data-section="contact">
+            <h2>Contact Us</h2>
+            <form action="https://formspree.io/f/mjkwaqvk" method="POST">
+                <div class="form-group">
+                    <i class='bx bx-user'></i>
+                    <input type="text" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <i class='bx bx-envelope'></i>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <i class='bx bx-message'></i>
+                    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home" data-section="hero" class="active">Home</a></li>
+                    <li><a href="#shop" data-section="shop">Shop</a></li>
+                    <li><a href="#about" data-section="about">About</a></li>
+                    <li><a href="#contact" data-section="contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>Contact Info</h3>
+                <p>Email: support@daclinstore.com</p>
+                <p>Phone: (123) 456-7890</p>
+            </div>
+            <div class="footer-social">
+                <h3>Follow Us</h3>
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <a href="#"><i class='bx bxl-twitter'></i></a>
+                <a href="#"><i class='bx bxl-instagram'></i></a>
+            </div>
+        </div>
+        <p class="footer-copy">© 2025 DaclinStore. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
